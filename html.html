@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>오늘의 투두</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Nanum Pen Script', cursive;
+    }
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+    #title{
+        font-size: 80px;
+        text-align: center;
+        padding-top: 100px;
+        margin-bottom: 80px;
+    }
+    .add{
+        width: 30%;
+        height: 40px;
+        padding: 50px;
+        margin: auto;
+        margin-bottom: 80px;
+        text-align: center;
+        border: 1px solid rgba(131, 131, 131, 0.814);
+        border-radius: 5px;
+        
+    }
+    #addInput{
+        width: 80%;
+        height: 40px;
+        float: left;
+        font-size: 28px;
+        border-radius: 5px;
+        padding: 0px 10px;
+    }
+    .add button{
+        width: 13%;
+        height: 40px;
+        float: right;
+        margin: auto;
+        font-size: 28px;
+        font-weight: 100;
+        border-radius: 5px;
+        border-style: none;
+        background-color: rgba(3, 103, 128, 0.75);
+        color: #fff;
+    }
+   
+    .list{
+        border: 1px solid rgba(131, 131, 131, 0.814);
+        border-radius: 5px;
+        width: 30%;
+        height: 120px;
+        margin: auto;
+        margin-top: 20px;
+        padding: 50px;
+        
+    }
+    .list h3{
+        font-size: 45px;
+        font-weight: 600;
+        color: #333;
+    }
+    .list p{
+        font-size: 35px;
+        margin: 20px 0px;
+        color: #333;
+        display: inline-block;
+    }
+    .list button{
+        font-size: 28px;
+        font-weight: 100;
+        width: calc(10% - 20px);
+        height: 35px;
+        border-radius: 5px;
+        border-style: none;
+        background-color: rgba(3, 103, 128, 0.75);
+        color: #fff;
+        margin-left: 20px;
+    }
+    .list button:hover, .add button:hover{
+        cursor: pointer;
+        background-color: #fff;
+        color: #000;
+        outline: rgb(3, 103, 128) 3px solid;
+    }
+    .list-card{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+</style>
+</head>
+<body>
+
+<h1 id="title">오늘 할 일</h1>
+
+
+
+
+<div class="wrap">
+
+    <!--list 입력창 / 추가 버튼-->
+    <div class="add">
+        <input id="addInput" type="text">
+        <button onclick="listAdd()">추가하기</button>
+    </div>
+
+    <!--list 목록-->
+    <div class="list">
+        
+    </div>
+</div>
+
+<script>
+
+    //완료하기 버튼 함수
+    function completeTodo(e){
+        console.log(e.target);
+        console.log(e.target.parentElement);
+        e.target.parentElement.style.backgroundColor = "gray";
+    }
+
+
+    // list 추가하는 함수
+    function listAdd (){
+        const new_list = document.createElement("div"); //list div를 만들고 클래스네임 부여.
+        new_list.className = "list-card";      
+        
+        const title = document.createElement("h3"); //list의 타이틀과 완료 버튼
+        title.textContent = document.getElementById("addInput").value;
+        const button = document.createElement("button");
+        button.textContent = "완료";
+
+        //만든 버튼에 완료하기 함수를 연결
+        button.addEventListener("click",completeTodo);
+        //타이틀과 버튼을 투두에 추가
+        new_list.appendChild(title);
+        new_list.appendChild(button);
+
+        //목록에 투두를 추가
+        document.getElementsByClassName("list")[0].appendChild(new_list);
+
+    }
+    </script>
+
+
+    <!--function bg (index){
+        let list = document.getElementsByClassName("list")[index];
+        list.style.backgroundColor = "gray";
+    
+
+   
+    const wraps = document.getElementsByClassName("wrap");
+
+    console.log(wraps);
+
+
+
+    const buttons = document.getElementsByTagName("button");
+    console.log(buttons);
+
+    for (let i=0; i<buttons.length; i++){
+        buttons[i].addEventListener("click",hello);
+    }
+
+    const new_div = document.createElement("div");
+    new_div.style.backgroundColor = 'green';
+    new_div.style.width = "100px";
+    new_div.style.height = "100px";
+    console.log(new_div);
+    document.body.appendChild(new_div);-->
+</body>
+</html>
